@@ -12,9 +12,9 @@ func initHooks(h *Hooks) {
 	// Add hooks by calling h.register{SDKInit/BeforeRequest/AfterSuccess/AfterError}Hook
 	// with an instance of a hook that implements that specific Hook interface
 	// Hooks are registered per SDK instance, and are valid for the lifetime of the SDK instance
-	MyApp := &myAppResponse{} 
+	MyApp := &myAppResponse{}
 	h.registerAfterSuccessHook(MyApp)
-	MyBulkApp := &myBulkAppResponse{} 
+	MyBulkApp := &myBulkAppResponse{}
 	h.registerAfterSuccessHook(MyBulkApp)
 	MyPolicy :=&myPolicyResponse{}
 	h.registerAfterSuccessHook(MyPolicy)
@@ -22,4 +22,6 @@ func initHooks(h *Hooks) {
 	h.registerAfterSuccessHook(MyBulkPolicy)
 	MyPolicyRequest :=&myPolicyRequest{}
 	h.registerBeforeRequestHook(MyPolicyRequest)
+	NPAPrivateAppUpdate := &npaPrivateAppUpdateRequest{}
+	h.registerBeforeRequestHook(NPAPrivateAppUpdate)
 }
