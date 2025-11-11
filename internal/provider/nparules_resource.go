@@ -632,11 +632,13 @@ func (r *NPARulesResource) Update(ctx context.Context, req resource.UpdateReques
 		return
 	}
 
-	resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
-
-	if resp.Diagnostics.HasError() {
-		return
-	}
+	// BUG FIX: Commented out refreshPlan call after Read operation - resets computed fields
+	// This was causing constant drift by overwriting computed fields with null values
+	// resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
+	//
+	// if resp.Diagnostics.HasError() {
+	// 	return
+	// }
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
