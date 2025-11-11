@@ -24,4 +24,6 @@ func initHooks(h *Hooks) {
 	h.registerBeforeRequestHook(MyPolicyRequest)
 	NPAPrivateAppUpdate := &npaPrivateAppUpdateRequest{}
 	h.registerBeforeRequestHook(NPAPrivateAppUpdate)
+	NPAPrivateAppUpdateResponse := &npaPrivateAppUpdateResponse{}
+	h.registerAfterSuccessHook(NPAPrivateAppUpdateResponse)
 }

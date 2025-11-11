@@ -30,7 +30,7 @@ type npaPrivateAppUpdateRequest struct {
 
 var (
 	_                            beforeRequestHook = (*npaPrivateAppUpdateRequest)(nil)
-	npaPrivateAppUpdateDebug     bool              = true
+	npaPrivateAppUpdateDebug     bool              = false
 )
 
 func (i *npaPrivateAppUpdateRequest) BeforeRequest(hookCtx BeforeRequestContext, req *http.Request) (*http.Request, error) {
