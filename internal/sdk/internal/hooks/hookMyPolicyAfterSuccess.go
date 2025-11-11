@@ -21,8 +21,9 @@ var (
 )
 
 func (i *myPolicyResponse) AfterSuccess(hookCtx AfterSuccessContext, res *http.Response) (*http.Response, error) {
+	log.Printf("DEBUG: AfterSuccess hook called with OperationID: %s", hookCtx.OperationID)
 	if hookCtx.OperationID == "createNPARules" || hookCtx.OperationID == "getNPARules" || hookCtx.OperationID == "NPARules" {
-		log.Print("Executing AfterSucess myPolicyResponse hook....")
+		log.Printf("Executing AfterSucess myPolicyResponse hook for operation: %s", hookCtx.OperationID)
 		var responseMap myPolicyResponse
 		// Read and unmarshal the response body
 		body, err := io.ReadAll(res.Body)
@@ -31,6 +32,7 @@ func (i *myPolicyResponse) AfterSuccess(hookCtx AfterSuccessContext, res *http.R
 			return nil, fmt.Errorf("ERROR: Unable to read response body: %w", err)
 		}
 		log.Printf("SUCCESS: Successfully read response body")
+		log.Printf("DEBUG: Raw response body: %s", string(body))
 		// Unmarshal the raw response into a map
 		if err := json.Unmarshal(body, &responseMap); err != nil {
 			log.Printf("ERROR: Unable to unmarshal response: %v", err)
