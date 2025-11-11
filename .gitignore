@@ -34,3 +34,4 @@ spec/merged.yaml
 *.speakeasy/
 ./dist
 dist/
+terraform-provider-netskope
