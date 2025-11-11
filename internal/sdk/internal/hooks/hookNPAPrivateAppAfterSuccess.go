@@ -20,6 +20,9 @@ var (
 )
 
 func (i *npaPrivateAppUpdateResponse) AfterSuccess(hookCtx AfterSuccessContext, res *http.Response) (*http.Response, error) {
+	if npaPrivateAppUpdateResponseDebug {
+		log.Printf("DEBUG: npaPrivateAppUpdateResponse hook called with OperationID: %s", hookCtx.OperationID)
+	}
 	if hookCtx.OperationID == "updateNPAPrivateApp" {
 		if npaPrivateAppUpdateResponseDebug {
 			log.Print("Executing AfterSuccess hook for NPA Private App update...")
