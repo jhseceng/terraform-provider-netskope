@@ -42,6 +42,14 @@ func (i *myPolicyResponse) AfterSuccess(hookCtx AfterSuccessContext, res *http.R
 		log.Print("--------------------")
 		log.Print(responseMap)
 		log.Print("--------------------")
+
+		// Copy top-level policy_type into rule_data.policy_type for consistency
+		// The API returns policy_type at the top level, but Terraform expects it in rule_data too
+		if responseMap.Data.PolicyType != nil && responseMap.Data.RuleData != nil {
+			responseMap.Data.RuleData.PolicyType = responseMap.Data.PolicyType
+			log.Printf("DEBUG: Copied top-level policy_type '%s' into rule_data.policy_type", *responseMap.Data.PolicyType)
+		}
+
 		oldPrivateAppValue := responseMap.Data.RuleData.PrivateApps
 		responseMap.Data.RuleData.PrivateApps = nil
 		for _, untrimmedApp := range oldPrivateAppValue {

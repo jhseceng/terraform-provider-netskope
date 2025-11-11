@@ -26,6 +26,7 @@ type RuleData struct {
 	MatchCriteriaAction       *MatchCriteriaAction        `json:"match_criteria_action,omitempty"`
 	NetLocationObj            []string                    `json:"net_location_obj,omitempty"`
 	OrganizationUnits         []string                    `json:"organization_units,omitempty"`
+	PolicyType                *string                     `json:"policy_type,omitempty"`
 	PrivateAppTagIds          []string                    `json:"privateAppTagIds,omitempty"`
 	PrivateAppTags            []string                    `json:"privateAppTags,omitempty"`
 	PrivateApps               []string                    `json:"privateApps,omitempty"`
