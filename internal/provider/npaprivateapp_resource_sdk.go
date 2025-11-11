@@ -194,6 +194,12 @@ func (r *NPAPrivateAppResourceModel) ToOperationsUpdateNPAPrivateAppRequest(ctx 
 func (r *NPAPrivateAppResourceModel) ToSharedPrivateAppsPutRequest(ctx context.Context) (*shared.PrivateAppsPutRequest, diag.Diagnostics) {
 	var diags diag.Diagnostics
 
+	id := new(int)
+	if !r.PrivateAppID.IsUnknown() && !r.PrivateAppID.IsNull() {
+		*id = int(r.PrivateAppID.ValueInt32())
+	} else {
+		id = nil
+	}
 	allowUnauthenticatedCors := new(bool)
 	if !r.AllowUnauthenticatedCors.IsUnknown() && !r.AllowUnauthenticatedCors.IsNull() {
 		*allowUnauthenticatedCors = r.AllowUnauthenticatedCors.ValueBool()
@@ -297,6 +303,7 @@ func (r *NPAPrivateAppResourceModel) ToSharedPrivateAppsPutRequest(ctx context.C
 		usePublisherDNS = nil
 	}
 	out := shared.PrivateAppsPutRequest{
+		ID:                       id,
 		AllowUnauthenticatedCors: allowUnauthenticatedCors,
 		UribypassHeaderValue:     uribypassHeaderValue,
 		AppOption:                appOption,
