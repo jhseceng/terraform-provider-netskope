@@ -6,7 +6,6 @@ type PrivateAppsPutRequestAppOption struct {
 }
 
 type PrivateAppsPutRequest struct {
-	ID                       *int                            `json:"id,omitempty"`
 	AllowUnauthenticatedCors *bool                           `json:"allow_unauthenticated_cors,omitempty"`
 	UribypassHeaderValue     *string                         `json:"uribypass_header_value,omitempty"`
 	AppOption                *PrivateAppsPutRequestAppOption `json:"app_option,omitempty"`
@@ -20,13 +19,6 @@ type PrivateAppsPutRequest struct {
 	Tags                     []TagItemNoID                   `json:"tags,omitempty"`
 	TrustSelfSignedCerts     *bool                           `json:"trust_self_signed_certs,omitempty"`
 	UsePublisherDNS          *bool                           `json:"use_publisher_dns,omitempty"`
-}
-
-func (o *PrivateAppsPutRequest) GetID() *int {
-	if o == nil {
-		return nil
-	}
-	return o.ID
 }
 
 func (o *PrivateAppsPutRequest) GetAllowUnauthenticatedCors() *bool {

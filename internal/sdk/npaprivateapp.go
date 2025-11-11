@@ -196,8 +196,8 @@ func (s *NPAPrivateApp) CreateNPAPrivateApps(ctx context.Context, request shared
 
 }
 
-// UpdateNPAPrivateApp - Update a private application
-// Update a private application based on private app id using PUT method
+// UpdateNPAPrivateApp - Patch a private application
+// Patch a private application based on private app id
 func (s *NPAPrivateApp) UpdateNPAPrivateApp(ctx context.Context, request operations.UpdateNPAPrivateAppRequest, opts ...operations.Option) (*operations.UpdateNPAPrivateAppResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -246,7 +246,7 @@ func (s *NPAPrivateApp) UpdateNPAPrivateApp(ctx context.Context, request operati
 		defer cancel()
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PUT", opURL, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "PATCH", opURL, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
