@@ -21,7 +21,7 @@ var (
 )
 
 func (i *myPolicyResponse) AfterSuccess(hookCtx AfterSuccessContext, res *http.Response) (*http.Response, error) {
-	if hookCtx.OperationID == "createNPARules" || hookCtx.OperationID == "getNPARules" || hookCtx.OperationID == "NPARules" || hookCtx.OperationID == "updateNPARulesById" {
+	if hookCtx.OperationID == "createNPARules" || hookCtx.OperationID == "getNPARules" || hookCtx.OperationID == "NPARules" {
 		log.Print("Executing AfterSucess myPolicyResponse hook....")
 		var responseMap myPolicyResponse
 		// Read and unmarshal the response body
